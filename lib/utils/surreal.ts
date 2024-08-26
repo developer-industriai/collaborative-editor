@@ -59,3 +59,18 @@ export async function addTestRecord(data: Record<string, any>): Promise<any> {
     throw err;
   }
 }
+
+export async function listTestRecords(): Promise<any[]> {
+  if (!db) {
+    throw new Error("Database not initialized");
+  }
+
+  try {
+    const result = await db.select("Test");
+    console.log("Test records retrieved successfully:", result);
+    return result;
+  } catch (err) {
+    console.error("Error retrieving Test records:", err);
+    throw err;
+  }
+}

@@ -24,3 +24,38 @@ export async function closeDb(): Promise<void> {
 export function getDb(): Surreal | undefined {
   return db;
 }
+
+export async function initializeDbAndCreateTest(): Promise<void> {
+  // Initialize the database if not already initialized
+  if (!db) {
+    await initDb();
+  }
+
+  if (!db) {
+    throw new Error("Failed to initialize database");
+  }
+
+  try {
+    // Create the Test table
+    await db.query('DEFINE TABLE Test;');
+    console.log("Test table created successfully");
+  } catch (err) {
+    console.error("Error creating Test table:", err);
+    throw err;
+  }
+}
+
+export async function addTestRecord(data: Record<string, any>): Promise<any> {
+  if (!db) {
+    throw new Error("Database not initialized");
+  }
+
+  try {
+    const result = await db.create("Test", data);
+    console.log("Record added successfully:", result);
+    return result;
+  } catch (err) {
+    console.error("Error adding record to Test table:", err);
+    throw err;
+  }
+}

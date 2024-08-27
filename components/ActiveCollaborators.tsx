@@ -1,10 +1,14 @@
-import { useOthers } from '@liveblocks/react/suspense'
+// import { useOthers } from '@liveblocks/react/suspense'
 import Image from 'next/image';
 
 const ActiveCollaborators = () => {
-  const others = useOthers();
+  const collaborators = [
+    { id: '1', name: 'Alice', avatar: 'https://picsum.photos/200/300', color: 'red' },
+    { id: '2', name: 'Bob', avatar: 'https://picsum.photos/200/301', color: 'blue' },
+    { id: '3', name: 'Charlie', avatar: 'https://picsum.photos/200/302', color: 'green' },
+  ];
 
-  const collaborators = others.map((other) => other.info);
+  // const collaborators = others.map((other) => other.info);
 
   return (
     <ul className="collaborators-list">

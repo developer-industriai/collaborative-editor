@@ -11,18 +11,18 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import React from "react";
 
-import {
-  FloatingComposer,
-  FloatingThreads,
-  liveblocksConfig,
-  LiveblocksPlugin,
-  useEditorStatus,
-} from "@liveblocks/react-lexical";
+// import {
+//   FloatingComposer,
+//   FloatingThreads,
+//   liveblocksConfig,
+//   LiveblocksPlugin,
+//   useEditorStatus,
+// } from "@liveblocks/react-lexical";
 import Loader from "../Loader";
 
 import FloatingToolbarPlugin from "./plugins/FloatingToolbarPlugin";
-import { useThreads } from "@liveblocks/react/suspense";
-import Comments from "../Comments";
+// import { useThreads } from "@liveblocks/react/suspense";
+// import Comments from "../Comments";
 import { DeleteModal } from "../DeleteModal";
 import Dashboard from "../Dashboard";
 
@@ -41,10 +41,21 @@ export function Editor({
   roomId: string;
   currentUserType: UserType;
 }) {
-  const status = useEditorStatus();
-  const { threads } = useThreads();
+  // const status = useEditorStatus();
+  // const { threads } = useThreads();
 
-  const initialConfig = liveblocksConfig({
+  // const initialConfig = liveblocksConfig({
+  //   namespace: "Editor",
+  //   nodes: [HeadingNode],
+  //   onError: (error: Error) => {
+  //     console.error(error);
+  //     throw error;
+  //   },
+  //   theme: Theme,
+  //   editable: currentUserType === "editor",
+  // });
+  // initialConfig={initialConfig}
+  const initialConfig = {
     namespace: "Editor",
     nodes: [HeadingNode],
     onError: (error: Error) => {
@@ -53,8 +64,7 @@ export function Editor({
     },
     theme: Theme,
     editable: currentUserType === "editor",
-  });
-
+  };
   return (
     <LexicalComposer initialConfig={initialConfig}>
       <div className="editor-container size-full">
@@ -81,11 +91,11 @@ export function Editor({
             </div>
           )}
 
-          <LiveblocksPlugin>
+          {/* <LiveblocksPlugin>
             <FloatingComposer className="w-[350px]" />
             <FloatingThreads threads={threads} />
             <Comments />
-          </LiveblocksPlugin>
+          </LiveblocksPlugin> */}
           <Dashboard />
         </div>
       </div>
